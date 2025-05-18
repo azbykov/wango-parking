@@ -15,7 +15,9 @@ app.use(express.json());
 app.use('/api', authRoutes);
 app.use('/api', parkingRoutes);
 
-process.chdir(path.join(__dirname, '../client'))
+if (process.env.VITE_CLIENT_DIR) {
+    process.chdir(process.env.VITE_CLIENT_DIR)
+}
 connectToMongo().then(() => {
     ViteExpress.listen(app, 3000, () => {
         console.log('🚀 Server running at http://localhost:3000')
