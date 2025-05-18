@@ -1,8 +1,16 @@
-// client/src/components/Layout.tsx
-import { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import type { ReactNode } from 'react';
 
 export default function Layout({ children }: { children: ReactNode }) {
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        navigate('/login');
+    }
+
     return (
         <div className="hero_area">
             {/* Header */}
@@ -19,8 +27,32 @@ export default function Layout({ children }: { children: ReactNode }) {
 
                         <div className="collapse navbar-collapse">
                             <ul className="navbar-nav ml-auto">
-                                <li className="nav-item"><Link className="nav-link" to="/">Home</Link></li>
-                                <li className="nav-item"><Link className="nav-link" to="/stop">Stop</Link></li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/">Start</Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/stop">Stop</Link>
+                                </li>
+                                {!token && (
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/login">Login</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/register">Register</Link>
+                                        </li>
+                                    </>
+                                )}
+                                {token && (
+                                    <>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/history">History</Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <button className="btn btn-danger" onClick={handleLogout}>Logout</button>
+                                        </li>
+                                    </>
+                                )}
                             </ul>
                         </div>
                     </nav>
@@ -37,5 +69,5 @@ export default function Layout({ children }: { children: ReactNode }) {
                 </div>
             </footer>
         </div>
-    )
+    );
 }

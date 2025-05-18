@@ -106,10 +106,9 @@ a:focus {
 
 /*header section*/
 .hero_area {
-  position: relative;
-  height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
   background-image: linear-gradient(to right, rgba($color: $primary1, $alpha: .9), rgba($color: $primary1, $alpha: .9)), url(../images/slider-bg.jpg);
   background-size: cover;
 }
@@ -903,5 +902,8 @@ a:focus {
   }
 }
 
+.find_container {
+  color: #1a1c78;
+}
 
 // end footer section
