@@ -14,13 +14,14 @@ interface ParkingSession {
 }
 
 interface ParkingStore {
-    session: ParkingSession | null
-    loading: boolean
-    allSessions: ParkingSession[]
-    activeSession: ParkingSession | null
-    stopParking: () => Promise<void>
-    startParking: () => Promise<void>
-    fetchAllSessions: () => Promise<void>
+  session: ParkingSession | null
+  loading: boolean
+  allSessions: ParkingSession[]
+  activeSession: ParkingSession | null
+  stopParking: () => Promise<void>
+  startParking: () => Promise<void>
+  fetchAllSessions: () => Promise<void>
+  fetchActiveSession: () => Promise<void>
 }
 
 export const useParkingStore = create<ParkingStore>((set) => ({
@@ -66,6 +67,16 @@ export const useParkingStore = create<ParkingStore>((set) => ({
     } catch (err) {
       toast.error('Failed to load parking history');
       console.error(err);
+    }
+  },
+
+  fetchActiveSession: async () => {
+    try {
+      const res = await axios.get('/parkings');
+      const active = res.data.find((s: any) => !s.endTime);
+      set({ activeSession: active || null });
+    } catch (err) {
+      console.error('Failed to fetch active session', err);
     }
   }
 }));

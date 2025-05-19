@@ -30,9 +30,6 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <li className="nav-item">
                   <Link className="nav-link" to="/">Start</Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="/stop">Stop</Link>
-                </li>
                 {!token && (
                   <>
                     <li className="nav-item">

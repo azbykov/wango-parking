@@ -20,8 +20,9 @@ if (process.env.VITE_CLIENT_DIR) {
   process.chdir(process.env.VITE_CLIENT_DIR);
 }
 connectToMongo().then(() => {
-  ViteExpress.listen(app, 3001, () => {
-    console.log('🚀 Server running at http://localhost:3001');
+  const port = Number(process.env.PORT) || 3000;
+  ViteExpress.listen(app, port, () => {
+    console.log(`🚀 Server running at http://localhost:${port}`);
   });
 });
 

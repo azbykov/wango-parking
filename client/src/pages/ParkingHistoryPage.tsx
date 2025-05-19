@@ -13,6 +13,12 @@ export default function ParkingHistoryPage() {
     fetchAllSessions();
   };
 
+  console.log('------ START -----');
+  console.log('ParkingHistoryPage.tsx; line: 17');
+  console.log({allSessions});
+  console.log('------- END -------');
+
+
   return (
     <section className="slider_section">
       <div className="container">
@@ -30,8 +36,8 @@ export default function ParkingHistoryPage() {
                   key={session._id}
                   className="list-group-item mb-2 p-3 d-flex justify-content-between align-items-center bg-white text-dark rounded"
                 >
-                  <div>{session.area.city.name}</div>
-                  <div>{session.area.name}</div>
+                  <div>{session.area?.city?.name}</div>
+                  <div>{session.area?.name}</div>
                   <div>{new Date(session.startTime).toLocaleTimeString()}</div>
                   <div>
                     {session.endTime

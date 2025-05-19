@@ -16,10 +16,15 @@ export default function StartParkingPage() {
 
   const {
     activeSession,
+    fetchActiveSession,
     loading,
     startParking,
     stopParking
   } = useParkingStore();
+
+  useEffect(() => {
+    fetchActiveSession();
+  }, []);
 
   useEffect(() => {
     fetchCities();
@@ -50,7 +55,7 @@ export default function StartParkingPage() {
         <div className="detail-box">
           <h1>Park your car</h1>
           <p>
-                        After choosing the city please choose the parking area and hit "Pay with Wango" button.
+            After choosing the city please choose the parking area and hit "Pay with Wango" button.
           </p>
         </div>
 
@@ -58,7 +63,7 @@ export default function StartParkingPage() {
           {activeSession ? (
             <div className="text-center">
               <p className="mb-3">
-                                Parking in <strong>{activeSession.area.name}</strong>, <strong>{activeSession.area.city.name}</strong>
+                Parking in <strong>{activeSession.area.name}</strong>, <strong>{activeSession.area.city.name}</strong>
               </p>
               <button onClick={handleStop} className="btn btn-danger w-100" disabled={loading}>
                 {loading ? 'Stopping...' : 'Stop Parking'}
