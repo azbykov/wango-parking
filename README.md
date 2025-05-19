@@ -28,6 +28,20 @@ npm run seed
 
 ---
 
+## 🧪 Run Tests
+```bash
+npm run test
+```
+
+> Tests are written using **Vitest** and **supertest**. Mongoose models are mocked using `vi.mock`. No real MongoDB connection is required.
+
+Test coverage includes:
+- ✅ User login
+- ✅ Start parking session
+- ✅ Stop parking session
+- ✅ Handle no active session case
+- ✅ Fetch parking history
+
 ## 🐳 Run with Docker
 
 ### 📁 Create a `.env` file in the root:
