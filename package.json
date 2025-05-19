@@ -12,8 +12,9 @@
     "preview": "vite preview --config client/vite.config.ts",
     "typecheck": "tsc --noEmit",
     "lint:client": "eslint client/src --config client/eslint.config.js --ext .ts,.tsx --fix",
-    "lint:server:fix": "eslint server --config server/eslint.config.js --ext .ts --fix",
-    "seed": "ts-node server/seed.ts"
+    "lint:server": "eslint server --config server/eslint.config.js --ext .ts --fix",
+    "seed": "ts-node server/seed.ts",
+    "test": "vitest --dir server --passWithNoTests"
   },
   "keywords": [],
   "author": "",
@@ -54,10 +55,12 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
     "postcss": "^8.5.3",
+    "supertest": "^7.1.1",
     "tailwindcss": "^4.1.7",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.30.1",
-    "vite": "^6.3.5"
+    "vite": "^6.3.5",
+    "vitest": "^3.1.3"
   }
 }
